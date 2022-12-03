@@ -6,6 +6,7 @@ import (
     "bufio"
     "log"
     "strconv"
+    "sort"
 )
 
 func check(e error) {
@@ -14,18 +15,22 @@ func check(e error) {
     }
 }
 
-func MinMax(array []int) (int, int) {
+func MinMax(array []int) (int) {
     var max int = array[0]
-    var min int = array[0]
     for _, value := range array {
         if max < value {
             max = value
         }
-        if min > value {
-            min = value
-        }
     }
-    return min, max
+    return max
+}
+
+func sum(array []int) (int) {
+    var total int = 0
+    for _, value := range array {
+        total = total + value
+    }
+    return total
 }
 
 func main() {
@@ -51,7 +56,8 @@ func main() {
 
     }
 
-    _, max := MinMax(total_elf_calories)
-    fmt.Print(max)
+    max := MinMax(total_elf_calories)
+    sort.Ints(total_elf_calories[:])
+    top_three := total_elf_calories[len(total_elf_calories)-3:len(total_elf_calories)]
 }
 
